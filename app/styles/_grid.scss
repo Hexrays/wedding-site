@@ -1,0 +1,320 @@
+.quarter {
+    position: relative;
+    width: 25%;
+    float: left;
+
+    @include breakpoint(sm){
+        width: 50%;
+    }
+}
+
+.half {
+    position: relative;
+    width: 50%;
+    float: left;
+
+    @include breakpoint(sm){
+        width: 50%;
+    }
+}
+
+.quarter-double {
+    position: relative;
+    width: 50%;
+    float: left;
+
+    .kid {
+        padding-bottom: 50%;
+    }
+
+    @include breakpoint(sm){
+        width: 50%;
+
+        .kid {
+            padding-bottom: 100%;
+        }
+    }
+}
+
+.full {
+    position: relative;
+    width: 100%;
+    float: left;
+
+    @include breakpoint(sm){
+        width: 50%;
+    }
+}
+
+.kid {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 100%;
+}
+
+.ny-state {
+    background-color: #282425;
+    transition: background-color 0.33s;
+
+    .no-touch &:hover, &.is-active {
+        background-color: #a3c43e;
+    }
+
+    .state {
+        position        : absolute;
+        top             : 50%;
+        left            : 50%;
+        transform       : scale(1) translate(-50%, -50%);
+        width           : 50%;
+        height          : 0;
+        padding-bottom  : 50%;
+        background      : url('../images/ny.svg') center center no-repeat;
+        background-size : contain;
+        transition      : transform 0.33s;
+    }
+}
+
+.flowers {
+    overflow: hidden;
+    transition: -webkit-filter 3s;
+
+    .kid {
+        background      : url('../images/flowers.jpg') center center no-repeat;
+        background-size : cover;
+        transition      : transform 0.33s ease-in-out;
+    }
+
+    .no-touch &:hover, &.is-active {
+        .kid {
+            transform: scale(1.25) translateZ(0);
+        }
+    }
+
+    .no-touch .konami & {
+        cursor: pointer;
+
+        &:hover {
+            .kid {
+                cursor: pointer;
+                transform  : translateZ(0);
+            }
+        }
+
+        .sister {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transform: translateX(100%);
+        }
+
+        &.look {
+            .kid {
+                transition : transform 10s linear;
+                transform  : translateX(-100%);
+            }
+            .sister {
+                transition : transform 10s linear;
+                transform: translateX(0);
+            }
+        }
+    }
+
+    .konami & {
+        filter: invert(1);
+    }
+}
+
+.jk-jk-hahaha {
+    float           : right;
+    background      : url('../images/JK-Kiss-roll.jpg') center center no-repeat;
+    background-size : cover;
+    // transition   : -webkit-filter 2s;
+
+    .jkpg {
+        position         : absolute;
+        top              : 0;
+        left             : 0;
+        width            : 100%;
+        height           : 100%;
+        background       : url('../images/JK-Kiss.jpg') center center no-repeat;
+        background-size  : cover;
+        transition       : opacity 0.33s ease-out 0s;
+        opacity          : 1;
+    }
+
+    .konami & {
+        // filter: invert(1);
+    }
+
+    .kid {
+        background-color: rgba(88, 76, 68, 0);
+        transition: background-color 0.33s;
+    }
+
+    .heart,
+    .heart-link {
+        position       : absolute;
+        top            : 55%;
+        left           : 50%;
+        transform      : translate(-50%, -50%)  translateZ(0);
+        width          : 75%;
+        height         : 0;
+        padding-bottom : 75%;
+        opacity        : 0;
+        transition     : opacity 0.5s;
+        pointer-events : none;
+    }
+
+    .heart-link {
+        pointer-events : auto;
+        z-index: 1;
+    }
+
+    .hollow-heart {
+        pointer-events : none;
+    }
+
+    .heart-mess {
+        @extend %monospaceFont;
+        position       : absolute;
+        top            : 45%;
+        transform      : translate(0, -50%) translateZ(0);
+        width          : 100%;
+        text-align     : center;
+        pointer-events : none;
+    }
+
+    .no-touch &:hover, &.is-active, &.is-clicked {
+
+        .jkpg {
+            opacity    : 0;
+            transition : opacity 0.05s ease-out 2s;
+        }
+
+        .kid {
+            background-color: rgba(88, 76, 68, 0.85);
+        }
+        .heart {
+            opacity: 1;
+        }
+    }
+}
+
+.topo-map {
+    background: url('../images/map.jpg') center center no-repeat;
+    background-size: cover;
+
+    .kid {
+        background-color: rgba(228,71,61,0);
+        transition: background-color 0.33s;
+    }
+
+    .no-touch &:hover, &.is-active {
+        .kid {
+            background-color: rgba(228,71,61,0.6);
+        }
+        .location {
+            opacity: 1;
+        }
+        .spruceton {
+            transform: translateY(50%);
+        }
+        .location-details {
+            transform: translateY(-50%);
+        }
+    }
+}
+
+.location {
+    position       : absolute;
+    top            : 46.5%;
+    transform      : translate(0, -50%) translateZ(0);
+    width          : 100%;
+    text-align     : center;
+    text-transform : uppercase;
+    opacity        : 0;
+    transition     : opacity 0.33s;
+
+    @include breakpoint(sm){
+        top: 45%;
+    }
+
+    .spruceton {
+        font-family    : $headerFont;
+        font-weight    : $fontWeightBlack;
+        font-size      : 24px;
+        transition     : transform 0.33s ease-out;
+        letter-spacing : 4px;
+
+        @include breakpoint(sm){
+            font-size: 14rem;
+        }
+    }
+
+    .locator {
+        width           : 26px;
+        height          : 38px;
+        margin          : 30px auto 25px;
+        background      : url('../images/locator.svg') center center no-repeat;
+        background-size : contain;
+
+        @include breakpoint(sm){
+            margin: 20px auto 15px;
+        }
+
+    }
+
+    .location-details {
+        @extend %monospaceFont;
+        transition     : transform 0.33s ease-out;
+    }
+}
+
+.hash-tag {
+    background-color : $gold;
+    color            : #000;
+    transition       : background-color 0.33s, color 0.33s;
+
+    @extend %monospaceFont;
+
+    text-transform   : uppercase;
+
+    .no-touch &:hover, &.is-active {
+        background-color : #282425;
+        color            : #fff;
+    }
+}
+
+.tag {
+    width      : 100%;
+    text-align : center;
+    position   : absolute;
+    top        : 50%;
+    left       : 0;
+    transform  : translateY(-50%);
+}
+
+.more-plaid {
+    display          : none;
+    overflow         : hidden;
+    background-color : #332c27;
+
+    .kid {
+        transition       : transform 0.33s;
+        background       : url('../images/brn-plaid.png') center center no-repeat;
+        background-size  : cover;
+    }
+
+    .no-touch &:hover, &.is-active {
+        .kid {
+            transform: rotate(180deg);
+        }
+    }
+
+    @include breakpoint(sm){
+        display: block;
+    }
+}

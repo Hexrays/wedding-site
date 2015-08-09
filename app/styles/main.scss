@@ -1,0 +1,289 @@
+// bower:scss
+// endbower
+
+@import 'reset';
+@import 'utilities/hex';
+@import 'constants';
+
+// Fonts
+@font-face {
+    font-family: 'andale_monoregular';
+    src: url('../fonts/andale_mono-webfont.eot');
+    src: url('../fonts/andale_mono-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/andale_mono-webfont.woff2') format('woff2'),
+         url('../fonts/andale_mono-webfont.woff') format('woff'),
+         url('../fonts/andale_mono-webfont.ttf') format('truetype'),
+         url('../fonts/andale_mono-webfont.svg#andale_monoregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+%monospaceFont {
+    font-family: $monospaceFont;
+    font-size: $monoFontSize;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+
+    @include breakpoint(sm){
+        font-size: $monoFontSizeSm;
+        letter-spacing: 2px;
+    }
+}
+
+.mono {
+    @extend %monospaceFont;
+    letter-spacing: 2px;
+}
+
+%brandon {
+    font-family: $headerFont;
+}
+
+.brandon {
+    @extend %brandon;
+}
+
+%brandon-lt-it {
+    @extend %brandon;
+    font-weight: 300;
+    font-style: italic;
+}
+
+.brandon-it {
+    @extend %brandon-lt-it;
+}
+
+@mixin flex-center-parent {
+    display          : flex;
+    justify-content  : center;
+    align-content    : center;
+}
+
+@mixin flex-center-child {
+    align-self       : center;
+}
+
+body, html {
+  width     : 100%;
+  height    : 100%;
+  font-size : 1px;
+
+}
+
+body {
+  font-family : $monospaceFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color       : #333;
+  margin      : 0;
+  transition  : -webkit-filter 3s;
+  overflow-x  : hidden;
+  background-color: $gold;
+
+  &.konami {
+    filter: invert(1);
+  }
+}
+
+sup {
+    font-size      : 0.5em;
+    vertical-align : super;
+}
+
+.link, .close {
+    cursor: pointer;
+}
+
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #fff;
+}
+
+.close {
+    font-family  : $headerFont;
+    font-size    : 30rem;
+    position     : absolute;
+    top          : 0;
+    right        : 0;
+    margin-top   : 20px;
+    margin-right : 20px;
+    z-index      : 100;
+    fill         : $gold;
+    width        : 25px;
+    height       : 25px;
+
+    svg {
+        transform: rotate(45deg);
+        fill: $gold;
+    }
+
+    @include breakpoint(sm){
+        width: 20px;
+        height: 20px;
+        margin-top   : 10px;
+        margin-right : 10px;
+    }
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+.hide-mobile {
+    @include breakpoint(sm){
+        display: none;
+    }
+}
+
+.browserupgrade {
+  margin     : 0.2em 0;
+  background : #ccc;
+  color      : #000;
+  padding    : 0.2em 0;
+}
+
+.main-sections {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.gold {
+    color: $gold;
+}
+
+section {
+    position    : relative;
+    width       : 100%;
+    text-align  : center;
+    color       : #fff;
+    font-family : "brandon-grotesque";
+    font-size   : 18rem;
+    font-weight : 200;
+    // line-height : 30px;
+    box-sizing  : border-box;
+    overflow    : hidden;
+    transition  : transform 0.5s;
+    transition: all 0.5s;
+
+    &.hero-unit {
+        height           : 100%;
+        border           : 40px solid #fff;
+        background-color : #fff;
+        transform        : translateZ(0);
+        @include flex-center-parent;
+
+        @include breakpoint(xs){
+            border: 16px solid #fff;
+        }
+    }
+
+    &.page {
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
+        background-color: #fff;
+        max-height  : 0;
+        transition  : all 0.75s;
+
+        &.active {
+            transition-delay: 0.25s;
+            max-height: 3400rem;
+            z-index: 1;
+
+            &.close {
+                position: absolute;
+            }
+        }
+
+        &.us-detail.active {
+            max-height: 15000rem;
+        }
+
+        @include breakpoint(sm){
+
+            &.active {
+                max-height: 30000rem;
+            }
+        }
+
+    }
+
+    &.is-viewing {
+        // transform: translate(-100%, 0);
+        // max-height: 200rem;
+        opacity: 0;
+    }
+
+    &#lodging-detail {
+        // height: 0;
+        // padding-bottom: 33%;
+
+    }
+
+    &#us {
+        background-color: blue;
+    }
+
+    .grid {
+
+    }
+}
+
+.love-box {
+    @include flex-center-child;
+
+    z-index          : 1;
+    // width            : 100%;
+    text-transform   : uppercase;
+    align-self       : center;
+    opacity          : 1;
+    transition       : transform 0.75s, opacity 0.5s;
+    transition-delay : 1s;
+}
+
+footer {
+    position         : relative;
+    width            : 100%;
+    height           : 0;
+    padding-bottom   : 26%;
+    background-color : #fff;
+    overflow         : hidden;
+
+    @include breakpoint(sm){
+        padding-bottom: 28%;
+    }
+
+    .kid {
+        background-color : rgba(164,125,83,0.04);
+    }
+
+    .scale {
+        position   : absolute;
+        top        : 0;
+        left       : 50%;
+        width      : 85%;
+        height     : 100%;
+        margin-top : 10px;
+        background : url('../images/jkfooter.svg') top center no-repeat;
+        transform  : translateX(-50%);
+
+        @include breakpoint(sm){
+            width     : 100%;
+            left      : 0;
+            transform : translateX(0);
+        }
+
+    }
+}
+
+@import 'nav';
+@import 'hero';
+@import 'date';
+@import 'lodging';
+@import 'us';
+@import 'grid';

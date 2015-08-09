@@ -1,0 +1,44 @@
+
+.the-date-to-save-container {
+    width            : 100%;
+    height           : 0;
+    padding-bottom   : 33%;
+    background-color : #fff;
+}
+
+.the-date {
+    width         : 100%;
+    font-size     : 72rem;
+    font-weight   : $fontWeightBlack;
+    margin-bottom : 26px;
+
+    @include breakpoint(sm){
+        font-size     : 28rem;
+        margin-bottom : 6px;
+    }
+}
+
+.the-date-to-save {
+    @include flex-center-parent;
+
+    position : absolute;
+    left     : 0;
+    top      : 0;
+    width    : 100%;
+    height   : 100%;
+    color    : $gold;
+}
+
+#countdown-container {
+    width          : 100%;
+    color          : #000;
+    margin-top     : 35px;
+    @extend %monospaceFont;
+
+    @include breakpoint(sm){
+        width        : 60%;
+        line-height  : 1.5;
+        margin       : 0 auto;
+        // font-size : 14rem;
+    }
+}

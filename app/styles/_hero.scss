@@ -1,0 +1,126 @@
+.hero-bg {
+    position         : absolute;
+    left             : 0;
+    top              : 0;
+    height           : 100%;
+    width            : 100%;
+    background       : url('../images/spruceton.jpg') center center no-repeat;
+    background-size  : cover;
+    opacity          : 1;
+    transition       : opacity 0.5s, -webkit-filter 1s;
+    transition-delay : 0.2s;
+    z-index          : -1;
+    box-sizing       : border-box;
+
+
+    .unloaded & {
+        opacity : 0;
+    }
+
+    .konami & {
+        // filter: invert(1);
+    }
+}
+
+.fake-color {
+    position         : absolute;
+    top              : 0;
+    left             : 0;
+    width            : 100%;
+    height           : 100%;
+    background-color : rgba(111,91,77,0.7);
+    transition       : background-color 0.5s;
+    box-sizing       : border-box;
+
+    .unloaded & {
+        background-color : rgba(125,110,109,0);
+    }
+}
+
+.hero-unit {
+    flex-direction: column;
+}
+
+.heart-the-date {
+    position       : absolute;
+    top            : 0;
+    padding-top    : 25px;
+    z-index        : 1;
+    width          : 100%;
+
+
+    @include breakpoint(xs){
+        padding-top: 15px;
+    }
+
+    p {
+        padding-bottom : 30px;
+
+        @include breakpoint(xs){
+            padding-bottom : 10px;
+        }
+    }
+
+    h4 {
+        @extend %monospaceFont;
+    }
+}
+
+.little-heart-container {
+    position: relative;
+    width: 10px;
+    height: 20px;
+    margin: 0 auto 30px;
+    transition: width 0.1s, height 0.1s;
+
+    #little-heart {
+        transition: fill 0.25s;
+        fill: #fff;
+    }
+
+    &.is-beating {
+        width: 13px;
+        // height: 15px;
+    }
+
+    &.is-really-beating {
+        width: 16px;
+    }
+
+    .no-touch &:hover, &:active {
+
+        #little-heart {
+            fill: #ff0000;
+        }
+    }
+}
+
+#little-heart {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    fill: #fff;
+}
+
+.home {
+    position: relative;
+
+    .unloaded & {
+        transform : translateY(-50%);
+        opacity   : 0;
+    }
+}
+
+.jk {
+    position    : relative;
+    padding     : 20px 0;
+    font-size   : 100rem;
+    line-height : 1;
+    font-weight : $fontWeightBlack;
+
+    @include breakpoint(xs){
+        font-size: 72rem;
+    }
+}
