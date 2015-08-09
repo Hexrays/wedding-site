@@ -83,7 +83,7 @@
             // window.scrollTo(0,0);
             if(!!document.getElementById('countdown-container')){
                 this.startCountdown();
-            this.getHeartSize();
+                this.getHeartSize();
             }
             this.setHeadlinePosition();
 
@@ -349,7 +349,7 @@
 
         startCountdown: function() {
             countdown(
-                new Date(2015, 9, 3, 16),
+                new Date(2015, 9, 3, 15, 30),
                 function(ts) {
                     document.getElementById('countdown-container').innerHTML = ts.toHTML();
                 },
