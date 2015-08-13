@@ -205,6 +205,15 @@ A library of transitions for revealing the loaded images
     background-color: #fff;
 }
 
+.us-detail {
+    hr {
+        width: 100px;
+        margin: 30px auto;
+        border: none;
+        border-top: 2px solid $gold;
+    }
+}
+
 #us-link {
     // pointer-events: none;
 
@@ -219,10 +228,20 @@ A library of transitions for revealing the loaded images
 
 #us-container {
     position: relative;
-
-    margin: 45px auto 15px;
+    margin: 35px auto 15px;
     max-width: 1020px;
     padding: 10px;
+
+}
+
+.us__header {
+    margin: 60px auto 20px;
+}
+
+.us__subheader {
+    width: 80%;
+    max-width: 600px;
+    margin: 20px auto 20px;
 }
 
 .us-image {

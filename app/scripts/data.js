@@ -35,7 +35,7 @@ var data = {
         },{
             src: 'images/jksite/008.jpg',
             w:800,
-            h:600
+            h:375
         },{
             src: 'images/jksite/009.jpg',
             w:800,
@@ -74,7 +74,7 @@ var data = {
             h:800
         },{
             src: 'images/jksite/018.jpg',
-            w:600,
+            w:800,
             h:800
         },{
             src: 'images/jksite/019.jpg',
@@ -126,7 +126,7 @@ var data = {
             h:600
         },{
             src: 'images/jksite/031.jpg',
-            w:800,
+            w:600,
             h:800
         },{
             src: 'images/jksite/032.jpg',
@@ -366,7 +366,7 @@ var data = {
             h:800
         },{
             src: 'images/jksite/091.jpg',
-            w:600,
+            w:800,
             h:800
         },{
             src: 'images/jksite/092.jpg',
@@ -424,7 +424,22 @@ var data = {
             src: 'images/jksite/105.jpg',
             w:800,
             h:600
+        },{
+            src: 'images/jksite/106.jpg',
+            w:800,
+            h:600
+        },{
+            src: 'images/jksite/107.jpg',
+            w:600,
+            h:800
+        },{
+            src: 'images/jksite/108.jpg',
+            w:800,
+            h:534
+        },{
+            src: 'images/jksite/109.jpg',
+            w:800,
+            h:600
         }
-
     ]
 }

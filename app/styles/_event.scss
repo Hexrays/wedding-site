@@ -1,0 +1,74 @@
+#event-detail,
+#gifts-detail {
+    color: #000;
+    background-color : $creamBg;
+}
+
+.event__container {
+    width: 80%;
+    max-width: 500px;
+    margin: 60px auto 80px;
+    letter-spacing: 1px;
+
+    hr {
+        width: 100px;
+        margin: 30px auto;
+        border: none;
+        border-top: 2px solid $gold;
+    }
+}
+
+.event__section {
+    margin: 30px 0;
+    color: #000;
+
+    &:last-child {
+        border-bottom: none;
+    }
+}
+
+.event__list {
+    margin: 5px 0 10px;
+}
+
+.event__list-item {
+    line-height: 1.4;
+    text-transform: none;
+
+    a {
+        color: #000;
+    }
+}
+
+.event__header {
+    margin: 15px 0;
+    color: #000;
+    line-height: 1.4;
+}
+
+.event__copy {
+    margin: 10px 0;
+    text-transform: none;
+    line-height: 1.4;
+
+    &.hike {
+        margin-bottom: 2px;
+    }
+
+    a {
+        color: #000;
+    }
+}
+
+.event__note {
+    @extend %brandon-lt-it;
+    margin: 10px 0;
+    letter-spacing: 1px;
+    text-transform: none;
+}
+
+.area__subheader {
+    font-size: 16rem;
+    margin-top: 15px;
+    margin-bottom: 25px;
+}

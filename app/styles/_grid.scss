@@ -57,8 +57,15 @@
     background-color: #282425;
     transition: background-color 0.33s;
 
-    .no-touch &:hover, &.is-active {
+    .no-touch &:hover, &.is-active, &.is-clicked {
         background-color: #a3c43e;
+
+        .state {
+            transform : scale(1) translate(-50%, -40%);
+        }
+        .area__message {
+            padding-bottom: 44%;
+        }
     }
 
     .state {
@@ -75,19 +82,63 @@
     }
 }
 
-.flowers {
+.gift__message-container,
+.area__message-container {
+    @extend %monospaceFont;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.33s;
+
+    .no-touch &:hover, .is-active &, .is-clicked & {
+        opacity: 1;
+    }
+}
+
+.gift__message-container {
+    background-color: rgba(#282425,0.66);
+}
+
+.gift__message,
+.area__message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 60px;
+}
+
+.area__message {
+    color: #000;
+    line-height: 1;
+    padding-top: 2%;
+    padding-bottom: 20%;
+    transition: padding 0.33s;
+}
+
+.gifts {
     overflow: hidden;
     transition: -webkit-filter 3s;
 
-    .kid {
+    .flowers {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        height: 100%;
         background      : url('../images/flowers.jpg') center center no-repeat;
         background-size : cover;
         transition      : transform 0.33s ease-in-out;
+        z-index: -1;
     }
 
-    .no-touch &:hover, &.is-active {
-        .kid {
-            transform: scale(1.25) translateZ(0);
+
+
+    .no-touch &:hover, &.is-active, &.is-clicked {
+        .flowers {
+            transform: translate(-50%, -50%) scale(1.25) translateZ(0);
         }
     }
 
@@ -95,9 +146,12 @@
         cursor: pointer;
 
         &:hover {
+            .flowers {
+                transform: translate(-50%, -50%) scale(1.25) translateZ(0);
+            }
             .kid {
                 cursor: pointer;
-                transform  : translateZ(0);
+                // transform  : translate(-50%, -50%) scale(1) translateZ(0);
             }
         }
 
@@ -212,7 +266,7 @@
         transition: background-color 0.33s;
     }
 
-    .no-touch &:hover, &.is-active {
+    .no-touch &:hover, &.is-active, &.is-clicked {
         .kid {
             background-color: rgba(228,71,61,0.6);
         }
@@ -285,6 +339,10 @@
     .no-touch &:hover, &.is-active {
         background-color : #282425;
         color            : #fff;
+
+        .tag__link {
+            color: #fff;
+        }
     }
 }
 
@@ -295,6 +353,11 @@
     top        : 50%;
     left       : 0;
     transform  : translateY(-50%);
+}
+
+.tag__link {
+    color: #000;
+    transition: color 0.33s;
 }
 
 .more-plaid {

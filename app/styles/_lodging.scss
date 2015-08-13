@@ -54,7 +54,7 @@
 
     h3 {
         font-family: $headerFont;
-        font-size: 42rem;
+        font-size: 32rem;
         font-weight: $fontWeightBlack;
         line-height: 0.8;
         letter-spacing: 2px;
@@ -215,7 +215,7 @@
     color: $gold;
     text-transform: uppercase;
     font-weight: $fontWeightBold;
-    font-size: 40rem;
+    font-size: 32rem;
     margin-bottom: 35px;
 
     @include breakpoint(sm){

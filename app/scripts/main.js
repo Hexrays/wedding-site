@@ -17,6 +17,7 @@
         // ==========================================================
         $window           : $(window),
         $body             : $('body'),
+        $footer           : $('footer'),
         $hero             : $('.hero-unit'),
         $heroBg           : $('.hero-bg'),
         $home             : $('.home'),
@@ -43,6 +44,7 @@
         jkTimer           : null,
         wall              : null,
         resizeTimer       : null,
+        pageScrollTimer   : null,
         sectionHeight     : undefined,
         sectionFullHeight : undefined,
         pageHeight        : undefined,
@@ -122,7 +124,7 @@
             this.$body.on('click', '.menu-icon',       this.onMenuBtnClick);
             this.$body.on('click', '.nav-item',        this.onNavItemClick);
             this.$body.on('click', '.link',            this.onLinkClick);
-            this.$body.on('click', '.flowers',         this.onFlClick);
+            this.$body.on('click', '.gifts',         this.onFlClick);
             this.$body.on('click', '#us-more',         this.onUsMoreClick);
             // this.$body.on('click', '#us-some',         this.onUsMoreClick);
             // this.$body.on('mouseover', '.link',        this.onLinkMouseover);
@@ -132,18 +134,16 @@
         },
 
         checkRouting: function() {
-            var delay = window.scrollY < this.windowHeight && !this.Flags.Browser.isMobile ? 2500 : 100;
+            var delay = window.scrollY < this.windowHeight && !this.Flags.Browser.isMobile ? 2500 : 100,
+                section = Object.keys(hex.url.params)[0],
+                self = this;
 
-            if(hex.url.has('lodging')){
-                setTimeout(function() {
-                    $('.nav-lodging').trigger('click');
-                }, delay);
-            } else if (hex.url.has('us')) {
-                setTimeout(function() {
-                    $('.nav-us').trigger('click');
+            if(section) {
+                window.setTimeout(function(){
+                    $('.nav-'+section).trigger('click');
+                    // self.scrollToPage(section);
                 }, delay);
             }
-
         },
 
         onWindowResize: function() {
@@ -202,7 +202,7 @@
                     'background'      : '#000 url("../images/liz.jpg") center center no-repeat',
                     'background-size' : 'contain'
                 });
-                $('.flowers').addClass('look');
+                $('.gifts').addClass('look');
             }
         },
 
@@ -210,12 +210,12 @@
             this.$body.toggleClass('konami');
             this.isChanged = !APP.isChanged;
 
-            if($('.flowers').hasClass('look')){
+            if($('.gifts').hasClass('look')){
                 $('.sister').css({
                     'background'      : '',
                     'background-size' : ''
                 });
-                $('.flowers').removeClass('look');
+                $('.gifts').removeClass('look');
             }
         },
 
@@ -229,9 +229,9 @@
                 $section           = $('#' + attr),
                 timerTimeout       = this.Flags.Browser.isMobile ? 1500 : 1000;
 
-            if(this.Flags.Browser.isMobile) {
-                console.log($el.parent());
-            }
+            // if(this.Flags.Browser.isMobile) {
+            //     console.log($el.parent());
+            // }
 
             if(attr === 'us' && !this.isUsLoaded) {
                 this.loadUs();
@@ -248,8 +248,9 @@
                 }
             });
 
-            window.setTimeout(function() {
-                self.scrollToPage(attr);
+            if(this.pageScrollTimer) window.clearTimeout(this.pageScrollTimer);
+            this.pageScrollTimer =  window.setTimeout(function() {
+                // self.scrollToPage(attr);
             }, timerTimeout);
 
 
@@ -268,7 +269,9 @@
             var $el       = $(el),
                 $page     = $el.closest('section'),
                 newPage   = $el.attr('id').split('-')[0],
-                $section  = $('#' + newPage);
+                closeEl        = document.getElementById(newPage + '-detail'),
+                $section  = $('#' + newPage),
+                self      = this;
 
             $page.removeClass('active');
             $section.removeClass('is-clicked is-active');
@@ -276,13 +279,19 @@
         },
 
         scrollToPage: function(id) {
-            var $el;
+            var body = document.body,
+                html = document.documentElement;
+            var height = Math.max( body.scrollHeight, body.offsetHeight,
+                                   html.clientHeight, html.scrollHeight, html.offsetHeight );
+            var maxScrollHeight, $el, elOffset, scrollOffset;
 
             if(id === 'lodging') {
                 $el = $('#' + id);
             } else {
                 $el = $('#' + id + '-detail');
             }
+
+            // scrollOffset = $el.offset().top > height - window.innerHeight ? height - window.innerHeight : $el.offset().top;
 
             $('html, body').stop().animate({
                 scrollTop: $el.offset().top
@@ -294,9 +303,11 @@
                 $el;
             e.preventDefault();
 
-            this.scrollToPage(id);
             this.$body.removeClass('menu-open');
             this.showPage(e.currentTarget);
+            window.setTimeout(function() {
+                this.scrollToPage(id);
+            }.bind(this), 500);
         },
 
         setHeadlinePosition: function() {
