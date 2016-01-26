@@ -325,7 +325,7 @@
 
         startBeat: function(){
             var $el = APP.$littleHeart;
-
+            // Why didn't I just use an animation? Dunno.
             if($el.hasClass('is-beating')) {
                 $el.toggleClass('is-beating').toggleClass('is-really-beating');
             } else if ($el.hasClass('is-really-beating')) {
@@ -359,10 +359,11 @@
         },
 
         startCountdown: function() {
+            // Is this where it broke?
             countdown(
                 new Date(2015, 9, 3, 15, 30),
                 function(ts) {
-                    document.getElementById('countdown-container').innerHTML = ts.toHTML();
+                    document.getElementById('countdown-container').innerHTML = '-' + ts.toHTML();
                 },
                 countdown.MONTHS|countdown.DAYS|countdown.HOURS|countdown.MINUTES//|countdown.SECONDS
             );
@@ -377,9 +378,12 @@
 
             img.src = image.src;
             img.setAttribute('class', 'us-image');
-            img.setAttribute('width', image.w)
-            img.setAttribute('height', image.h)
-            img.onload = this.onImageLoad(img);
+            // img.setAttribute('width', image.w);
+            // img.setAttribute('height', image.h);
+            img.dataset.width = image.w;
+            img.dataset.height = image.h;
+            // img.onload = this.onImageLoad(img);
+            this.imagesLoaded += 1;
 
             return img;
         },
@@ -422,6 +426,10 @@
                 frag.appendChild(el);
             };
             this.usContainer.appendChild(frag);
+
+            if(this.imagesLoaded === this.IMAGES_PER_LOAD || this.imagesLoaded === this.maxPerLoad) {
+                this.createPhotoWall();
+            }
         },
 
         removeMoreBtn: function() {
