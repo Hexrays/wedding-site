@@ -301,6 +301,7 @@
         onNavItemClick: function(e) {
             var id = $(e.currentTarget).attr('id').split('-')[0],
                 $el;
+            if(id === 'pics') return;
             e.preventDefault();
 
             this.$body.removeClass('menu-open');
@@ -363,7 +364,7 @@
             countdown(
                 new Date(2015, 9, 3, 15, 30),
                 function(ts) {
-                    document.getElementById('countdown-container').innerHTML = '-' + ts.toHTML();
+                    document.getElementById('countdown-container').innerHTML = ts.toHTML() + ' ago';
                 },
                 countdown.MONTHS|countdown.DAYS|countdown.HOURS|countdown.MINUTES//|countdown.SECONDS
             );
